@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputInfo } from "./InputInfo";
 import { CheckInputInfo } from "./CheckInputInfo";
 import { ShowRecord } from "./ShowRecord";
 import { Register } from "./Register";
 import { ShowError } from "./ShowError";
 import { ShowCumTime } from "./ShowCumTime";
-import { createClient } from "@supbase/supbase-js";
+import { getAllRecords } from "./supabaseCRUDFunctions";
 
 export const LearningRecord = () => {
   const [inputText, setInputText] = useState("");
@@ -14,8 +14,18 @@ export const LearningRecord = () => {
   const [error, setError] = useState("");
   const [cumTime, setCumTime] = useState(0);
 
-  const supabase = createClient('https://supabase.com/dashboard/project/bllrsuubgohvodcithmw', 'publishable-or-anon-key')
+  const getRecords = async () => {
+    try {
+      const fetchedRecords = await getAllRecords();
+      setRecords(fetchedRecords);
+    } catch (error) {
+      console.error("Error fetching records:", error);
+    }
+  };
 
+  useEffect(() => {
+    getRecords();
+  }, []);
 
   const onChangeText = (e) => {
     setInputText(e.target.value);
@@ -30,7 +40,6 @@ export const LearningRecord = () => {
       setError("入力されていない項目があります");
       return;
     }
-
     const newRecords = [...records, { title: inputText, time: inputTime }];
     setRecords(newRecords);
 

@@ -10,3 +10,24 @@ export const getAllRecords = async () => {
 
     return records;
 }
+
+export const insertRecord = async ( record ) => {
+    const { error } = await supabase
+    .from("study-record")
+    .insert(record);
+
+    if (error) {
+        console.error("Error insert todos:", error);
+    }
+}
+
+export const deleteRecord = async ( id ) => {
+    const { error } = await supabase
+    .from("study-record")
+    .delete()
+    .eq("id", id);
+
+    if(error){
+        console.error("Error delete todos:", error);
+    }
+}

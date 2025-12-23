@@ -3,7 +3,7 @@ name: Scheduled deploy
 on:
   schedule:
     - cron: "0 6 * * *"
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,10 +16,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "18"
-        - name: Install dependencies
-          run: npm install
-        - name: Run build
-          run: npm run build
+      - name: Install dependencies
+        run: npm install
+      - name: Run build
+        run: npm run build
 
   deploy:
     name: deploy
@@ -34,9 +34,9 @@ jobs:
           node-version: "18"
           cache: "npm"
       - name: Install firebase-tools
-        run: npm install --save-dev firebase-tools@13
+        run: npm install --save-dev firebase-tools
       - name: Decode Firebase service account key
-        run:
+        run: |
           echo "${{ secrets.FIREBASE_KEY }}" | base64 -d > ./firebase-key.json
           echo "GOOGLE_APPLICATION_CREDENTIALS=${{ github.workspace }}/firebase-key.json" >> $GITHUB_ENV
       - name: change space

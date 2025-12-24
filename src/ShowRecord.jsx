@@ -3,7 +3,7 @@ export const ShowRecord = (props) => {
     return (
         <div>
             {records.map((record) => (
-                <li key={record.id}>{record.title} {record.time}時間 <button onClick={() => onClick(record.id)}>Delete</button></li>
+                <li key={record.id}>{record.title} {record.time}時間 <button onClick={() => onClick(record.id)}>削除</button></li>
             ))}
         </div>
     );

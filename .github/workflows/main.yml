@@ -20,6 +20,11 @@ jobs:
         run: npm install
       - name: Run build
         run: npm run build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
 
   deploy:
     name: deploy
@@ -28,6 +33,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Download build artifact
+        uses: actions/dornload-artifact@v4
+        with:
+          name: dist
+          path: dist
       - name: Setup Node.js and cache
         uses: actions/setup-node@v4
         with:

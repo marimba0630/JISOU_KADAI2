@@ -51,6 +51,8 @@ describe("Input Test", () => {
         const input_time = await screen.findByLabelText("学習時間");
         const button = screen.getByRole("button", {name: "登録"});
 
+        await user.type(input_title, "入力テスト");
+        await user.type(input_time, "10");
         await user.click(button);
 
         const after = (await screen.findAllByRole("listitem")).length;

@@ -10,8 +10,10 @@ jobs:
   build_and_test_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Build
+      - name: Cneckout
         uses: actions/checkout@v4
+        
+      - name: Install & Build
         run: npm ci && npm run build
         env:
           VITE_SUPABASE_URL: ${{secrets.SUPABASE_URL}}

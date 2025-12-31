@@ -91,7 +91,7 @@ export const LearningRecord = () => {
   }else{
     return (
       <>
-        <h1>学習記録一覧</h1>
+        <h1 data-testid="title">学習記録一覧</h1>
         <InputInfo infoType="Text" inputValue={inputText} onChange={onChangeText} />
         <InputInfo infoType="Time" inputValue={inputTime} onChange={onChangeTime} />
         <CheckInputInfo infoType="Text" inputValue={inputText} />
@@ -99,7 +99,7 @@ export const LearningRecord = () => {
   
         <ShowRecord records={records} onClick={onDeleteRecord} />
   
-        <Register onClick={onRegister} />
+        <Register data-testid="register" onClick={onRegister} />
         <ShowError error={error} />
         <ShowCumTime cumTime={cumTime} />
       </>

@@ -6,6 +6,6 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 //Jest テスト用
 //const supabaseURL = process.env.VITE_SUPABASE_URL;
-//const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+//const supabaseKey = process.env.VITE_SU
 
 export const supabase = createClient(supabaseURL, supabaseKey);

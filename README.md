@@ -1,16 +1,44 @@
-# React + Vite
+# 学習記録アプリ
+このアプリはReactとsupabaseを使用したWebアプリです。
+また、リポジトリはgithubにpushするとGithub Actionsで
+Test → Build → Deploy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# アプリ説明
+日々の学習の内容と学習時間の記録と総学習時間の見える化をした
+アプリです。
+学習内容と0より大きい数字を入力して登録を押すと
+記録が保存され、削除したい記録の隣の「削除」ボタンを押すと
+削除されます。
 
-Currently, two official plugins are available:
+# 環境設定の方法
+1. `.env`ファイルを作成し、以下の内容を記載してください。
+VITE_SUPABASE_URL=SUPABASEのプロジェクトURL
+VITE_SUPABASE_ANON_KEY=SUPABASEのANON_KEY
+注. supabaseで作るテーブル情報は以下の通り
+Table name: study-record
+id(PK) uuid
+title varchar
+time int4
+created_at timestamp
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Firebaseのプロジェクトコンフィグ情報を記載する
+https://zenn.dev/h_yoshikawa0724/articles/2020-10-06-react-firebase-deploy?redirected=1
+上記サイトを参考にFirebaseにプロジェクトを作り、それぞれ設定する
 
-## React Compiler
+VITE_REACT_APP_APP_KEY=※apikey
+VITE_REACT_APP_AUTH_DOMAIN=※authDomain
+VITE_REACT_APP_PROJECT_ID=※projectId
+VITE_REACT_APP_STORAGEBUCKET=※storageBucket
+VITE_REACT_APP_MESSAGING_SENDER_ID=※messagingSenderId
+VITE_REACT_APP_APP_ID=※appId
+VITE_REACT_APP_MEASUREMENT_ID=※measurementId
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Makeファイルを実行して、firebaseへデプロイします
 
-## Expanding the ESLint configuration
+1, 2まで対応するとローカルで動きます。
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 起動の仕方
+ローカルにpullした後、リポジトリ直下へ
+ディレクトリへ移動。その後、
+コマンドプロンプトで「npm run dev」を叩くと
+ローカルで起動する
